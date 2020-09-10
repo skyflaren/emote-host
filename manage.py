@@ -5,7 +5,7 @@ app = Flask(__name__, static_url_path='')
 
 @app.route("/")
 def home():
-	return send_from_directory('img', 'poggies')
+	return send_from_directory('img', 'poggies.png')
 
 @app.route('/<path>')
 def fetch(path):
