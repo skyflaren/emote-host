@@ -4,7 +4,7 @@ Uses flask to return emotes (in anticipation of global emotes disappearing)
 
 ## Usage
 
-Attach the name of your emote to the end of the url, for example. "url.com/poggies"
+Attach the name of your emote to the end of the url, for example. "http://emho.glitch.me//poggies"
 
 ## Installation
 
