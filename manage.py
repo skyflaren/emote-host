@@ -9,8 +9,12 @@ def home():
 
 @app.route('/<path>')
 def fetch(path):
-	path += ".png"
-	return send_from_directory('img', path)
+	try: return send_from_directory('img', path+'.png')
+	except:
+		try: return send_from_directory('img', path+'.gif')
+		except:
+			try: return redirect("https://aaerialys.cf/emotes/"+path+".png")
+			except: return redirect("https://aaerialys.cf/emotes/"+path+".gif")
 
 if __name__ == "__main__":
 	app.run(debug=True)
