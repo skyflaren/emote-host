@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Emote Host | Home</title>
+		<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Kumbh+Sans:wght@300&display=swap" rel="stylesheet">
+		<link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+	</head>
+	<body>
+		<div class="par">
+			<div class="cluster">
+				<h1>Emote Host</h1>
+				<hr>
+				<p>To use, add the name of your emote to the end of this url, e.g. "<a href="https://emho.glitch.me/poggies">https://emho.glitch.me/poggies</a>"</p>
+			</div>
+		</div>
+		<footer>
+			<a href="https://github.com/skyflaren/emote-host">
+				<img id="logo" src="{{ url_for('static',filename='img/github.svg') }}"></img>
+				<script>
+					let logo = document.getElementById("logo");
+					logo.addEventListener("mouseenter",function (evt) {
+						logo.src = "{{ url_for('static', filename='img/github-blue.svg') }}"
+					});
+					logo.addEventListener("mouseleave",function (evt) {
+						logo.src = "{{ url_for('static', filename='img/github.svg') }}"
+					});
+				</script>
+			</a>
+		</footer>
+	</body>
+</html>
