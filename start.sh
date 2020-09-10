@@ -1,2 +1,2 @@
 # dev
-python manage.py
+python3 manage.py
