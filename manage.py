@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request, send_from_directory, abort, make_response
+from flask import Flask, render_template, request, send_from_directory, abort
 import requests
 
 app = Flask(__name__, static_url_path='')
