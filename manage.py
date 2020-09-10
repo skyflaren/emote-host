@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__, static_url_path='')
 
-extensions = ['png','gif']
+extensions = ['png','gif', 'jpg']
 urls = ['https://aaerialys.cf/emotes']
 
 @app.route("/")
