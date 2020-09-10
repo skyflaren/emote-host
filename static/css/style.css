@@ -50,3 +50,11 @@ footer{
 img:hover{
 	color: #3e7182;
 }
+
+svg.logo {
+	stroke: #a19e94;
+}
+
+svg.logo:hover {
+	stroke: #3e7182;
+}
