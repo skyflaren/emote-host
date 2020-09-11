@@ -1,5 +1,8 @@
-from flask import Flask, render_template, send_from_directory, abort
-import requests
+from flask import Flask, request, render_template, send_from_directory, abort
+import requests, os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_url_path='')
 
