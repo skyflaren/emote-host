@@ -41,13 +41,14 @@ def allowed_filename(filename):
 # def upload(id: int) -> str:
 def upload():
 	submitted_file = request.files['file']
-	# if submitted_file and allowed_filename(submitted_file.filename) and request.values.tk == os.getenv("TOKEN"):
-	if submitted_file and allowed_filename(submitted_file.filename):
+	if submitted_file and allowed_filename(submitted_file.filename) and request.form.get("TOKEN") == os.getenv("TOKEN"):
 		filename = secure_filename(submitted_file.filename)
 		directory = app.config['UPLOAD_FOLDER']
 		if not os.path.exists(directory):
 			os.mkdir(directory)
 		submitted_file.save(os.path.join(directory, filename))
+	elif request.form.get("TOKEN") != os.getenv("TOKEN"): return abort(403)
+	else: return abort(400)
 	return "Success"
 
 if __name__ == "__main__":
