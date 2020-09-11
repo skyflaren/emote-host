@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory, abort
+from flask import Flask, render_template, send_from_directory, abort
 import requests
 
 app = Flask(__name__, static_url_path='')
@@ -20,7 +20,7 @@ def fetch(path):
 				return (resp.content, resp.status_code, resp.headers.items())
 			except: continue
 	for ext in extensions:
-		try: return send_from_directory('img', '%s.%s' % (path, ext))
+		try: return send_from_directory('static/img', '%s.%s' % (path, ext))
 		except: continue
 	return abort(404)
 
