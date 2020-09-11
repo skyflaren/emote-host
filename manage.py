@@ -27,5 +27,9 @@ def fetch(path):
 		except: continue
 	return abort(404)
 
+@app.route('/add', methods=['POST'])
+def upload():
+	return abort(403)
+
 if __name__ == "__main__":
 	app.run()
