@@ -7,11 +7,12 @@ load_dotenv()
 
 EXTENSIONS = ['png','gif','jpg']
 URLS = ['https://aaerialys.cf/emotes']
-UPLOAD_FOLDER = '/Users/wabasabi/Desktop/emote-host/static/img'
+UPLOAD_FOLDER = os.path.join('%s','static','img')
 
 
 
 app = Flask(__name__, static_url_path='')
+UPLOAD_FOLDER = UPLOAD_FOLDER % app.root_path
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
@@ -28,7 +29,7 @@ def fetch(path):
 				return (resp.content, resp.status_code, resp.headers.items())
 			except: continue
 	for ext in EXTENSIONS:
-		try: return send_from_directory('static/img', '%s.%s' % (path, ext))
+		try: return send_from_directory(app.config['UPLOAD_FOLDER'], '%s.%s' % (path, ext))
 		except: continue
 	return abort(404)
 
