@@ -7,7 +7,7 @@ load_dotenv()
 
 EXTENSIONS = ['png','gif','jpg']
 URLS = ['https://aaerialys.cf/emotes']
-UPLOAD_FOLDER = os.path.join('%s','static','img')
+UPLOAD_FOLDER = os.path.join('%s','uploads')
 
 app = Flask(__name__, static_url_path='')
 UPLOAD_FOLDER = UPLOAD_FOLDER % app.root_path
