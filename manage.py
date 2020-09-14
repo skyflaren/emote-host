@@ -1,12 +1,11 @@
 from flask import Flask, request, render_template, send_from_directory, abort, flash, redirect, url_for
-import requests, os, magic, platform, copy
+import requests, os
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
-from io import BytesIO
 
 load_dotenv()
 
-EXTENSIONS = ['png','gif','jpg', 'jpeg']
+EXTENSIONS = ['png','gif','jpg']
 URLS = ['https://aaerialys.cf/emotes']
 UPLOAD_FOLDER = os.path.join('%s','static','img')
 
@@ -36,25 +35,21 @@ def fetch(path):
 
 
 def allowed_filename(filename):
-	return '.' in filename and filename.rsplit('.', 1)[1] in EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1] in EXTENSIONS
 
 @app.route('/add', methods=['POST'])
 # def upload(id: int) -> str:
 def upload():
 	submitted_file = request.files['file']
-	tmp_file =submitted_file
-	f = magic.Magic(mime=True)
-
-	if submitted_file and allowed_filename(submitted_file.filename) and request.form.get("TOKEN") == os.getenv("TOKEN") and (f.from_buffer(tmp_file.read()).split("/")[1] in EXTENSIONS):
+	if submitted_file and allowed_filename(submitted_file.filename) and request.form.get("TOKEN") == os.getenv("TOKEN"):
 		filename = secure_filename(submitted_file.filename)
 		directory = app.config['UPLOAD_FOLDER']
 		if not os.path.exists(directory):
 			os.mkdir(directory)
 		submitted_file.save(os.path.join(directory, filename))
-		return "Success"
 	elif request.form.get("TOKEN") != os.getenv("TOKEN"): return abort(403)
 	else: return abort(400)
-	
+	return "Success"
 
 if __name__ == "__main__":
 	app.run(debug=True, threaded=True)
