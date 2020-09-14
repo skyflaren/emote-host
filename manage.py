@@ -9,8 +9,6 @@ EXTENSIONS = ['png','gif','jpg']
 URLS = ['https://aaerialys.cf/emotes']
 UPLOAD_FOLDER = os.path.join('%s','static','img')
 
-
-
 app = Flask(__name__, static_url_path='')
 UPLOAD_FOLDER = UPLOAD_FOLDER % app.root_path
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -52,4 +50,4 @@ def upload():
 	return "Success"
 
 if __name__ == "__main__":
-	app.run(debug=True, threaded=True)
+	app.run(threaded=True)
