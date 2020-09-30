@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 load_dotenv()
 
 EXTENSIONS = ['png','gif','jpg']
-URLS = ['https://aaerialys.cf/emotes']
+URLS = ['https://emot.cf','https://dulldesk.github.io/emote-fetcher']
 UPLOAD_FOLDER = os.path.join('%s','uploads')
 
 app = Flask(__name__, static_url_path='')
