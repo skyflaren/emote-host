@@ -19,7 +19,7 @@ def home():
 
 @app.route('/<path>')
 def fetch(path):
-    path = path.lower()
+	path = path.lower()
 	for link in URLS:
 		for ext in EXTENSIONS:
 			try: 
