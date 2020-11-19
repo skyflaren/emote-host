@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 load_dotenv()
 
 EXTENSIONS = ['png','gif','jpg']
-URLS = ['https://emot.cf','https://dulldesk.github.io/emote-fetcher']
+URLS = ['https://dulldesk.github.io/emote-fetcher','https://emot.cf']
 UPLOAD_FOLDER = os.path.join('%s','uploads')
 
 app = Flask(__name__, static_url_path='')
@@ -20,6 +20,9 @@ def home():
 @app.route('/<path>')
 def fetch(path):
 	path = path.lower()
+	for ext in EXTENSIONS:
+		try: return send_from_directory(app.config['UPLOAD_FOLDER'], '%s.%s' % (path, ext))
+		except: continue
 	for link in URLS:
 		for ext in EXTENSIONS:
 			try: 
@@ -27,9 +30,6 @@ def fetch(path):
 				if resp.status_code >= 400: raise Exception
 				return (resp.content, resp.status_code, resp.headers.items())
 			except: continue
-	for ext in EXTENSIONS:
-		try: return send_from_directory(app.config['UPLOAD_FOLDER'], '%s.%s' % (path, ext))
-		except: continue
 	return abort(404)
 
 
