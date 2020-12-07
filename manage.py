@@ -8,6 +8,7 @@ load_dotenv()
 EXTENSIONS = ['png','gif','jpg']
 URLS = ['https://dulldesk.github.io/emote-fetcher','https://emot.cf']
 UPLOAD_FOLDER = os.path.join('%s','uploads')
+ON_404 = "bratwhy"
 
 app = Flask(__name__, static_url_path='')
 UPLOAD_FOLDER = UPLOAD_FOLDER % app.root_path
@@ -30,7 +31,9 @@ def fetch(path):
 				if resp.status_code >= 400: raise Exception
 				return (resp.content, resp.status_code, resp.headers.items())
 			except: continue
-	return abort(404)
+	
+	if path == ON_404: return abort(404)
+	return fetch(ON_404)
 
 
 def allowed_filename(filename):
